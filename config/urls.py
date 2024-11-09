@@ -24,9 +24,9 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Project API",
+        title="77.uz API",
         default_version='v1',
-        description="API documentation for the project",
+        description="77.uz uchun API dokumintatsiyasi",
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
@@ -37,8 +37,6 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('common/', include('common.urls')),
     path('store/', include('store.urls')),
-
-    # Swagger and Redoc URLs
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]
