@@ -1,7 +1,9 @@
 # models.py
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser,  PermissionsMixin
 from django.db import models
 import random
+from .managers import CustomUserManager #managaerdan CustomManagerni chqirib oldim
+
 
 # Foydalanuvchilarni boshqarish uchun manager klassini yaratdim
 class CustomUserManager(BaseUserManager):
