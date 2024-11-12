@@ -4,25 +4,6 @@ from django.db import models
 import random
 from .managers import CustomUserManager #managaerdan CustomManagerni chqirib oldim
 
-
-# Foydalanuvchilarni boshqarish uchun manager klassini yaratdim
-class CustomUserManager(BaseUserManager):
-    # Oddiy foydalanuvchi yaratish uchun metod
-    def create_user(self, email, password=None, **extra_fields):
-        if not email:
-            raise ValueError("Email kiritilishi shart")  # Email bo'lmasa xatolik chiqaraman
-        email = self.normalize_email(email)  # Emailni normalize methodi orqali tozlab olaman tozalab olaman
-        user = self.model(email=email, **extra_fields)  # Foydalanuvchini yarataman
-        user.set_password(password)  # Parolni saqlayman
-        user.save(using=self._db)  # Foydalanuvchini saqlayman
-        return user
-
-    # Superuser yaratish uchun metod
-    def create_superuser(self, email, password=None, **extra_fields):
-        extra_fields.setdefault('is_staff', True)  # Superuserda 'is_staff' bo'lishi kerak
-        extra_fields.setdefault('is_superuser', True)  # Superuserda 'is_superuser' ham bo'lishi kerak
-        return self.create_user(email, password, **extra_fields)
-
 # Foydalanuvchi modeli
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True) 
