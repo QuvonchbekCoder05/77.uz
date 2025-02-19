@@ -2,6 +2,7 @@ from .base import * # noqa
 
 from datetime import timedelta
 import environ
+import os
 
 
 env = environ.Env(
@@ -21,10 +22,14 @@ MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]  # noqa: F405
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / "db.sqlite3",
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': '77',
+        'USER': 'posstgres',
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),  # Parolni atrof-muhit o'zgaruvchisidan olish
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
-}
+
 
 AUTH_USER_MODEL = env('AUTH_USER_MODEL')
 
